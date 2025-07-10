@@ -8,22 +8,26 @@
 
 ## Requisitos
 - .NET 6 SDK o superior
+- Visual Studio 2022 (recomendado)
 
 ## Cómo levantar el backend
-1. Abre una terminal en esta carpeta (`tasks-backend`).
-2. Ejecuta:
-   ```sh
-   dotnet build
-   dotnet run --project src/API/API.csproj
-   ```
-3. Accede a Swagger en: `http://localhost:5000/swagger`
+1. Abre el archivo de solución .sln en Visual Studio.
+2. Establece el proyecto API como proyecto de inicio.
+3. Presiona F5 o haz clic en "Iniciar" para compilar y ejecutar.
+4. Una vez iniciado, accede a la documentación Swagger en:
+👉 http://localhost:5032/swagger
 
 > La base de datos es en memoria, no requiere configuración adicional.
 
 ---
 
 ## Notas
-- Arquitectura Onion y Repository Pattern aplicados.
-- Código limpio y principios SOLID.
-- Manejo global de errores y validaciones.
-- Documentación Swagger lista para probar los endpoints.
+✔️ Arquitectura basada en Onion + Repository Pattern.
+
+✔️ Principios SOLID aplicados.
+
+✔️ Validaciones robustas y manejo globalizado de excepciones.
+
+✔️ Swagger habilitado para probar y explorar los endpoints REST.
+
+✔️ Ideal para pruebas y extensiones futuras (migración a persistencia real, autenticación, etc).
