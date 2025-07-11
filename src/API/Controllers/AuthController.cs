@@ -12,10 +12,9 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        // Usuario de ejemplo (en memoria)
         private readonly string testUser = "admin";
         private readonly string testPassword = "1234";
-        private readonly string jwtSecret = "EstaEsUnaClaveSuperSeguraJWT123456789!"; // Usa una clave segura y guárdala en appsettings
+        private readonly string jwtSecret = "EstaEsUnaClaveSuperSeguraJWT123456789!";
 
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest1 request)

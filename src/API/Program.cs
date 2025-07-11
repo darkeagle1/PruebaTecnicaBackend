@@ -10,20 +10,16 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// DbContext InMemory
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("TasksDb"));
 
-// Dependency Injection
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 
-// CORS (para el frontend Angular)
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
@@ -31,8 +27,7 @@ builder.Services.AddCors(options =>
     );
 });
 
-// ================= JWT CONFIGURATION =================
-var jwtSecret = "EstaEsUnaClaveSuperSeguraJWT123456789!"; // ¡Cambia esto por una clave segura!
+var jwtSecret = "EstaEsUnaClaveSuperSeguraJWT123456789!";
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -51,14 +46,11 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret))
     };
 });
-// =====================================================
 
 var app = builder.Build();
 
-// Middleware global de manejo de excepciones
 app.UseMiddleware<API.Middlewares.ExceptionMiddleware>();
 
-// Swagger
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -67,10 +59,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors();
 
-// ========== AUTENTICACIÓN Y AUTORIZACIÓN ==========
-app.UseAuthentication(); // <-- ¡Agrega esto antes de UseAuthorization!
+app.UseAuthentication(); 
 app.UseAuthorization();
-// ===================================================
 
 app.MapControllers();
 
